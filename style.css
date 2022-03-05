@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    border: 0;
+    font-family: Calibri;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #BEBEBE;
+    height: 100vh;
+    width: 200vw;
+    overflow: hidden;
+}
+
+section#stats {
+    position: fixed;
+    z-index: 200;
+    bottom: 10vh;
+    left: 25vw;
+    width: 50vw;
+    height: 30vh;
+    background-color: rgba(238, 62, 126, 0.3);
+    border: 1vw solid rgba(238, 62, 126, 1);
+    border-radius: 2vw;
+}
+
+section#main {
+    position: fixed;
+    height: 70vh;
+    top: 0vh;
+    width: 200vw;
+    overflow: hidden;
+}
+
+p#WPM {
+    margin: 0;
+    padding: 0;
+    color: #EE3E7E;
+    font-weight: bolder;
+    font-size: 10vw;
+    line-height: calc(30vh - 2vw);
+    text-align: center;
+}
+
+div.word {
+    color: #909090;
+    font-weight: bold;
+    font-size: 5vw;
+    display: inline-block;
+    padding-left: 1.2vw;
+    padding-right: 1.2vw;
+    padding-bottom: 0.4vw;
+    border: 0.6vw solid #909090;
+    border-radius: 1.5vw;
+    margin: 1vw;
+    margin-top: 31vh;
+    background-color: #BDBDBD;
+}
+
+div.word.active {
+    color: #EE3E7E;
+    border-color: #EE3E7E;
+    border-radius: 1vw;
+    background-color: rgba(238, 62, 126, 0.3);
+    padding-bottom: 1.4vw;
+}
+
+p.letter {
+    position: relative;
+    display: inline;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+p.letter.inactive {
+    animation-name: pop;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+}
+
+@keyframes pop {
+    0% { padding-bottom: 0; }
+    50% { padding-bottom: 1vw; margin-top: -1vw; color: #EC87AC;}
+    100% { padding-bottom: 0; }
+}
+
+p.letter.incorrect {
+    color: rgba(252, 255, 64, 0.5);
+}
+
+p.letter.active::after {
+    content: "";
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    bottom: -0.5vw;
+    background-color: #EE3E7E;
+    width: 100%;
+    height: 0.6vw;
+    border-radius: 0.3vw;
+    animation-name: slide;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+}
+
+p.letter.inactive::after {
+    content: "";
+    position: absolute;
+    z-index: 100;
+    left: 25%;
+    bottom: -1vw;
+    background-color: #EE3E7E;
+    width: 50%;
+    height: 1vw;
+    border-radius: 0.3vw;
+    animation-name: slideout;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+}
+
+@keyframes slideout {
+    0% { bottom: -0.5vw; width: 100%; left: 0; height: 0.6vw; }
+    50% { bottom: -0.75vw; width: 80%; left: 10%; height: 1.5vw; }
+    100% { bottom: -1vw; }
+}
+
+@keyframes slide {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+div.word.inactive {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 0;
+    opacity: 0;
+    animation-name: wordout;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
+}
+
+div.word.inactive p.letter {
+    overflow: hidden;
+    font-size: 0;
+    animation-name: letterout;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
+}
+
+@keyframes wordout {
+    0% { margin-left: 1vw; margin-right: 1vw; padding-left: 1.2vw; padding-right: 1.2vw; border-width: 0.6vw; opacity: 100%; }
+    25% {
+        margin-top: 5vw; margin-bottom: 5vw;
+        margin-left: 1vw; margin-right: 1vw; padding-left: 1.2vw; padding-right: 1.2vw; border-width: 0.6vw;
+    }
+    50% { margin-top: -5vw; margin-bottom: -5vw; opacity: 100%;}
+    100% { margin-left: 0vw; margin-right: 0vw; padding-left: 0vw; padding-right: 0vw; border-width: 0vw; opacity: 0;}
+}
+
+@keyframes letterout {
+    0% { font-size: 5vw; }
+    25% { font-size: 5vw; }
+    100% { font-size: 0; }
+}
+
+section#waves div {
+    width: 0.1vw;
+    position: fixed;
+    bottom: -1vw;
+    background-color: #EE3E7E;
+    height: 1vw;
+    border-radius: 2vw;
+    animation-name: test;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+section#topwaves div {
+    width: 0.1vw;
+    position: fixed;
+    top: -1vw;
+    background-color: #EE3E7E;
+    height: 1vw;
+    border-radius: 2vw;
+    animation-name: test;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes test {
+    0% { width: 0.1vw; }
+    50% { width: 1vw; }
+    100% { width: 0.1vw; }
+}
+
+section#fly div {
+    position: fixed;
+    width: 1vw;
+    transform: rotate(75deg);
+    height: 5vw;
+    border-radius: 1vw;
+    background-color: #EE3E7E;
+    animation-name: fly;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 10%;
+
+}
+
+@keyframes fly {
+    0% { left: 0vw; }
+    100% { left: 100vw; }
+}
